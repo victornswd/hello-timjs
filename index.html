@@ -12,6 +12,13 @@
         <script src="/js/mui.js"></script>
     </head>
     <body>
+      <style>
+        #color-container {
+          padding: 4em 4em 6em;
+          transition: background-color cubic-bezier(0.4, 0, 1, 1) .2s;
+        }
+      </style>
+
       <div id="color-container">
         <form class="mui--text-center" onsubmit="event.preventDefault();greet(event)">
           <span class="mui--text-display3 mui--text-light">Hello,</span>
