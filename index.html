@@ -8,24 +8,37 @@
         <meta name="theme-color" content="rgb(95, 18, 236)">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="manifest" href="./manifest.json">
-        <link href="./css/mui.css" rel="stylesheet" type="text/css" />
-        <script src="./js/mui.js"></script>
+        <link href="./css/material.min.css" rel="stylesheet" type="text/css" />
+        <script src="./js/material.min.js"></script>
     </head>
     <body>
       <style>
+        div#color-container * {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
         #color-container {
           padding: 4em 4em 6em;
+          text-align: center;
+          color: #f5f5f5;
         }
       </style>
 
       <div id="color-container">
-        <form class="mui--text-center" onsubmit="event.preventDefault();greet(event)">
-          <span class="mui--text-display3 mui--text-light">Hello,</span>
-          <div class="mui-textfield">
-            <input type="text" class="mui--text-display3" value="tim.js" id="color-setter" />
+        <form onsubmit="event.preventDefault();greet(event)">
+          <span class="mdl-typography--display-3">Hello,</span>
+          <div class="mdl-textfield mdl-js-textfield">
+            <input type="text" class="mdl-textfield__input" value="tim.js" id="color-setter" />
           </div>
-          <button type="submit" class="mui-btn mui-btn--raised" style="margin-top: 2em;">Greet me!</button>
+          <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" style="margin-top: 2em; background: #f5f5f5">Greet me!</button>
         </form>
+      </div>
+
+      <div id="offline-ready" class="mdl-js-snackbar mdl-snackbar">
+        <div class="mdl-snackbar__text"></div>
+        <button class="mdl-snackbar__action" type="button"></button>
       </div>
 
       <script>
@@ -58,6 +71,40 @@
           container.style.backgroundColor = newColor;
           themeColor.content = newColor;
         }, false);
+      </script>
+
+      <script>
+        // SERVICE WORKERS
+        if ('serviceWorker' in navigator) {
+          navigator.serviceWorker.register('service-worker.js').then(function(reg) {
+            // updatefound is fired if service-worker.js changes.
+            reg.onupdatefound = function() {
+              var installingWorker = reg.installing;
+
+              installingWorker.onstatechange = function() {
+                switch (installingWorker.state) {
+                  case 'installed':
+                    if (navigator.serviceWorker.controller) {
+                      console.log('New or updated content is available.');
+                    } else {
+                      console.log('Content is now available offline!');
+
+                      var snackbarContainer = document.querySelector('#offline-ready');
+                      var data = {message: 'Content is now available offline!'};
+                      snackbarContainer.MaterialSnackbar.showSnackbar(data);
+                    }
+                    break;
+
+                  case 'redundant':
+                    console.error('The installing service worker became redundant.');
+                    break;
+                }
+              };
+            };
+          }).catch(function(e) {
+            console.error('Error during service worker registration:', e);
+          });
+        }
       </script>
     </body>
 </html>
