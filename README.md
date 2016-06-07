@@ -1,3 +1,3 @@
-# Hello.js
+# hello-timjs
 
-Progressive Web App example
+Progressive Web App Demo for tim.js
