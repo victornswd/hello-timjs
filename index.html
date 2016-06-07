@@ -8,7 +8,18 @@
         <meta name="theme-color" content="rgb(95, 18, 236)">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="manifest" href="/manifest.json">
+        <link href="/css/mui.css" rel="stylesheet" type="text/css" />
+        <script src="/js/mui.js"></script>
     </head>
     <body>
+      <div id="color-container">
+        <form class="mui--text-center" onsubmit="event.preventDefault();greet(event)">
+          <span class="mui--text-display3 mui--text-light">Hello,</span>
+          <div class="mui-textfield">
+            <input type="text" class="mui--text-display3" value="tim.js" id="color-setter" />
+          </div>
+          <button type="submit" class="mui-btn mui-btn--raised" style="margin-top: 2em;">Greet me!</button>
+        </form>
+      </div>
     </body>
 </html>
