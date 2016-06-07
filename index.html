@@ -8,23 +8,25 @@
         <meta name="theme-color" content="rgb(95, 18, 236)">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="manifest" href="./manifest.json">
-        <link href="./css/mui.css" rel="stylesheet" type="text/css" />
-        <script src="./js/mui.js"></script>
+        <link href="./css/material.min.css" rel="stylesheet" type="text/css" />
+        <script src="./js/material.min.js"></script>
     </head>
     <body>
       <style>
         #color-container {
           padding: 4em 4em 6em;
+          text-align: center;
+          color: #f5f5f5;
         }
       </style>
 
       <div id="color-container">
-        <form class="mui--text-center" onsubmit="event.preventDefault();greet(event)">
-          <span class="mui--text-display3 mui--text-light">Hello,</span>
-          <div class="mui-textfield">
-            <input type="text" class="mui--text-display3" value="tim.js" id="color-setter" />
+        <form onsubmit="event.preventDefault();greet(event)">
+          <span class="mdl-typography--display-3">Hello,</span>
+          <div class="mdl-textfield mdl-js-textfield">
+            <input type="text" class="mdl-textfield__input" value="tim.js" id="color-setter" />
           </div>
-          <button type="submit" class="mui-btn mui-btn--raised" style="margin-top: 2em;">Greet me!</button>
+          <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" style="margin-top: 2em; background: #f5f5f5">Greet me!</button>
         </form>
       </div>
 
