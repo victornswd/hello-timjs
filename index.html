@@ -10,6 +10,7 @@
         <link rel="manifest" href="./manifest.json">
         <link href="./css/material.min.css" rel="stylesheet" type="text/css" />
         <script src="./js/material.min.js"></script>
+        <script src="./js/localForage.min.js"></script>
     </head>
     <body>
       <style>
@@ -26,11 +27,11 @@
         }
       </style>
 
-      <div id="color-container">
+      <div id="color-container" style="background-color: #ccc">
         <form onsubmit="event.preventDefault();greet(event)">
           <span class="mdl-typography--display-3">Hello,</span>
           <div class="mdl-textfield mdl-js-textfield">
-            <input type="text" class="mdl-textfield__input" value="tim.js" id="color-setter" />
+            <input type="text" class="mdl-textfield__input" value="" autocomplete="off" id="color-setter" />
           </div>
           <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" style="margin-top: 2em; background: #f5f5f5">Greet me!</button>
         </form>
@@ -58,6 +59,10 @@
         </div>
       </footer>
       <script>
+        var container = document.getElementById('color-container');
+        var themeColor = document.head.querySelector('meta[name="theme-color"]');
+        var setter = document.getElementById('color-setter');
+
         function stringToColor(str) {
             // str to hash
             for (var i = 0, hash = 0; i < str.length; hash = str.charCodeAt(i++) + ((hash << 5) - hash));
@@ -70,16 +75,32 @@
 
         function greet(event) {
           alert('hello, ' + event.target[0].value + '!')
+          localforage.setItem('savedName', event.target[0].value);
         }
 
-        var container = document.getElementById('color-container');
-        var themeColor = document.head.querySelector('meta[name="theme-color"]');
-        var setter = document.getElementById('color-setter');
+        function setValue() {
+          localforage.getItem('savedName').then(function (key) {
+            console.info('got here')
+            console.time('here')
+            var name = 'tim.js';
+            if (key) {
+              name = key;
+            } else {
+              localforage.setItem('savedName', name);
+            }
 
-        var startValue = stringToColor(setter.value);
+            setter.value = name;
+            var startValue = stringToColor(setter.value);
 
-        container.style.backgroundColor = startValue;
-        themeColor.content = startValue;
+            container.style.backgroundColor = startValue;
+            themeColor.content = startValue;
+
+            console.timeEnd('here')
+            console.timeEnd('setValue')
+          });
+        }
+        console.time('setValue');
+        setValue();
 
         setter.addEventListener('keyup', function(e) {
           var newColor = stringToColor(e.target.value);
