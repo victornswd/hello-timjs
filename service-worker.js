@@ -53,7 +53,7 @@ self.addEventListener('push', function(event) {
       self.registration.showNotification('PWA Example', {
       body: payload,
       icon: 'launcher-icon-4x.png',
-      vibrate: [ 10000 ]
+      vibrate: [ 500, 100, 500, 100, 500, 100, 500, 100, 1000 ]
     })
   );
 });
