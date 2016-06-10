@@ -1,0 +1,26 @@
+{
+  "name": "hello-timjs",
+  "version": "1.0.0",
+  "description": "Progressive Web App example for tim.js talk",
+  "main": "server.js",
+  "dependencies": {
+    "body-parser": "^1.15.1",
+    "express": "^4.13.4",
+    "web-push": "^2.1.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/victornswd/hello-timjs.git"
+  },
+  "author": "Victor Ionescu",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/victornswd/hello-timjs/issues"
+  },
+  "homepage": "https://github.com/victornswd/hello-timjs#readme"
+}
