@@ -160,7 +160,7 @@ if ('serviceWorker' in navigator) {
                  '';
 
 
-    fetch('//localhost:3000/register', {
+    fetch('https://h2.io:7777/register', {
       method: 'post',
       headers: {
         'Content-type': 'application/json'
@@ -173,7 +173,7 @@ if ('serviceWorker' in navigator) {
     });
 
     function notify(e) {
-      fetch('//localhost:3000/sendNotification', {
+      fetch('https://h2.io:7777/sendNotification', {
         method: 'post',
         headers: {
           'Content-type': 'application/json'
