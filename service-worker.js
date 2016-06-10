@@ -2,7 +2,7 @@ var CACHE_NAME = 'dependencies-cache';
 
 var REQUIRED_FILES = [
   'css/material.min.css',
-  'js/material.min.js'
+  'js/material.min.js',
   'js/localForage.min.js'
 ];
 
