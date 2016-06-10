@@ -45,3 +45,15 @@ self.addEventListener('activate', function(event) {
   console.log('[activate] Claiming this ServiceWorker!');
   event.waitUntil(self.clients.claim());
 });
+
+self.addEventListener('push', function(event) {
+  var payload = event.data ? event.data.text() : 'no payload';
+
+  event.waitUntil(
+      self.registration.showNotification('PWA Example', {
+      body: payload,
+      icon: 'launcher-icon-4x.png',
+      vibrate: [ 500, 100, 500, 100, 500, 100, 500, 100, 1000 ]
+    })
+  );
+});
